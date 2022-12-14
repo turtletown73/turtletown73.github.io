@@ -1,4 +1,7 @@
-canvas.requestPointerLock();
+canvas.onclick = function() {
+  canvas.requestPointerLock();
+}
+
 alert('does this even work?');
 const dog = document.getElementById('dogimage');
 
