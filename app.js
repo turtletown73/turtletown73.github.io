@@ -2,11 +2,11 @@ canvas.onclick = function() {
   canvas.requestPointerLock();
 }
 
-alert('does this even work?');
 const dog = document.getElementById('dogimage');
 
 document.addEventListener(function(event) {
   if (event.keyCode == 87) {
     alert('w was pressed');
+    dog.style.bottom += 15
   }
 })
