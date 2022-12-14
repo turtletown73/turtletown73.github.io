@@ -1,5 +1,5 @@
 canvas.requestPointerLock();
-
+alert('does this even work?');
 const dog = document.getElementById('dogimage');
 
 document.addEventListener(function(event) {
