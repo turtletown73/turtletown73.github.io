@@ -12,6 +12,7 @@ h1 {
   margin: auto;
   width: 1000px;
   height: 750px;
+  border-radius: 30px;
 }
 
 #dogimage {
