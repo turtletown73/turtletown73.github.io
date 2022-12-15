@@ -1,12 +1,3 @@
-canvas.onclick = function() {
-  canvas.requestPointerLock();
-}
-
-const dog = document.getElementById('dogimage');
-
-document.addEventListener(function(event) {
-  if (event.keyCode == 87) {
-    alert('w was pressed');
-    dog.style.bottom += 15;
-  }
+document.getElementById("buttontest").addEventListener("click", function() {
+  document.getElemenyById("dogimage").style.border-color = "rgb(255, 0, 0)"
 })
