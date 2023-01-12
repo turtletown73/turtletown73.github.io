@@ -9,3 +9,10 @@ a {
 h1 {
   color: rgb(255, 255, 255);
 }
+
+#navigation {
+  margin: auto;
+  background-color: rgb(50, 50, 50);
+  width: 50%;
+  height: 50%;
+}
