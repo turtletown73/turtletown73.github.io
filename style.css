@@ -28,8 +28,9 @@ body {
   color:#ffffff;
   transition-duration: 50ms;
   border-radius: 30%;
-  text-align: center;
-  margin: auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #games:hover {
@@ -54,7 +55,8 @@ body {
   transition-duration: 50ms;
   border-radius: 30%;
   text-align: center;
-  margin: auto;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .game:hover {
