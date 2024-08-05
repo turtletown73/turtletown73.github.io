@@ -9,3 +9,49 @@ body {
   left: 50%;
   top: 5%;
 }
+
+#disclaimer {
+  text-align: center;
+  color: rgb(128, 0, 0);
+}
+
+#games {
+  text-align: center;
+  display: inline-block;
+  width: 50vh;
+  height: 25vh;
+  font-size: large;
+  background-color: #450000;
+  border-color: #750000;
+  color:#ffffff;
+  transition-duration: 50ms;
+  border-radius: 30%;
+  margin-left: 2px;
+  margin-top: 2px;
+}
+
+#games:hover {
+  background-color: #450045;
+  border-color: #b500b5;
+  color:#000000
+}
+
+#game {
+  display: inline-block;
+  width: 25vh;
+  height: 25vh;
+  font-size: large;
+  background-color: #450000;
+  border-color: #750000;
+  color:#ffffff;
+  transition-duration: 50ms;
+  border-radius: 30%;
+  margin-left: 2px;
+  margin-top: 2px;
+}
+
+#game:hover {
+  background-color: #450045;
+  border-color: #b500b5;
+  color:#000000
+}
