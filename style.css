@@ -28,8 +28,6 @@ body {
   color:#ffffff;
   transition-duration: 50ms;
   border-radius: 30%;
-  margin-left: 2px;
-  margin-top: 2px;
   text-align: center;
   margin: auto;
 }
@@ -37,7 +35,7 @@ body {
 #games:hover {
   background-color: #450045;
   border-color: #b500b5;
-  color:#000000
+  color:#ffffff;
 }
 
 #gameslist {
@@ -55,8 +53,6 @@ body {
   color:#ffffff;
   transition-duration: 50ms;
   border-radius: 30%;
-  margin-left: 2px;
-  margin-top: 2px;
   text-align: center;
   margin: auto;
 }
@@ -64,5 +60,5 @@ body {
 .game:hover {
   background-color: #450045;
   border-color: #b500b5;
-  color:#000000
+  color:#ffffff;
 }
