@@ -6,3 +6,9 @@ body {
 h1 {
   text-align: center;
 }
+
+#title {
+  position: absolute;
+  left: 50%;
+  top: 5%;
+}
