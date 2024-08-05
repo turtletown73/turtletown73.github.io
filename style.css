@@ -27,7 +27,7 @@ body {
   margin-top: 2px;
 }
 
-.games:hover {
+#games:hover {
   background-color: #450045;
   border-color: #b500b5;
   color:#000000
@@ -47,7 +47,7 @@ body {
   margin-top: 2px;
 }
 
-#game:hover {
+.game:hover {
   background-color: #450045;
   border-color: #b500b5;
   color:#000000
