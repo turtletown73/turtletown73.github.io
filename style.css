@@ -3,12 +3,9 @@ body {
   color: white;
 }
 
-h1 {
-  text-align: center;
-}
-
 #title {
   position: absolute;
+  text-align: center;
   left: 50%;
   top: 5%;
 }
