@@ -4,10 +4,7 @@ body {
 }
 
 #title {
-  position: absolute;
   text-align: center;
-  left: 50%;
-  top: 5%;
 }
 
 #disclaimer {
