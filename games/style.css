@@ -23,7 +23,7 @@ body {
   transition-duration: 50ms;
   border-radius: 30%;
   text-align: center;
-  line-height: 12.5em;
+  line-height: 12.5vh;
   text-decoration: none;
 }
 
