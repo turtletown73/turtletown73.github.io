@@ -23,6 +23,8 @@ body {
   transition-duration: 50ms;
   border-radius: 30%;
   text-align: center;
+  line-height: 12.5em;
+  text-decoration: none;
 }
 
 .game:hover {
