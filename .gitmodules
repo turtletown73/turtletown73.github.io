@@ -1,0 +1,3 @@
+[submodule "games/bitburner"]
+	path = games/bitburner
+	url = https://github.com/bitburner-official/bitburner-official.github.io
