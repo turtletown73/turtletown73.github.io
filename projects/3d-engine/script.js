@@ -53,7 +53,7 @@ function drawline(pos1, pos2) {
 }
 
 for (let i = 0; i < triangles.length; i++) {
-    drawline(vertices[triangles[i][0] - 1], vertices[triangles[i][1] - 1]);
-    drawline(vertices[triangles[i][1] - 1], vertices[triangles[i][2] - 1]);
-    drawline(vertices[triangles[i][0] - 1], vertices[triangles[i][2] - 1]);
+    drawline(project(vertices[triangles[i][0] - 1]), project(vertices[triangles[i][1] - 1]));
+    drawline(project(vertices[triangles[i][1] - 1]), project(vertices[triangles[i][2] - 1]));
+    drawline(project(vertices[triangles[i][0] - 1]), project(vertices[triangles[i][2] - 1]));
 }
