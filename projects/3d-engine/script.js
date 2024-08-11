@@ -1,5 +1,6 @@
 let canvas = document.getElementById("viewport");
 let ctx = canvas.getContext("2d");
+ctx.strokeStyle = "white";
 
 let vertices = [
     {x:-1,y:-1,z:1},
