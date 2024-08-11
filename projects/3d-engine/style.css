@@ -1,8 +1,13 @@
 body {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 #title {
+  text-align: center;
+}
+
+#viewport {
+  display: inline;
   text-align: center;
 }
