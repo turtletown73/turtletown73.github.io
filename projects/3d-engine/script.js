@@ -33,12 +33,15 @@ let fov = 1.0 / Math.tan(angle / 2.0);
 let width = canvas.width
 let height = canvas.height
 let aspectratio = width / height
+let dist = 1
 let cam = {x:0,y:0,z:0}
 
 function project(pos) {
-    let x = ((pos.x - cam.x) * (fov / pos.z)) + cam.x
-    let y = ((pos.y - cam.y) * (fov / pos.z)) + cam.y
-    return {x:x, y:y}
+    let x = ((pos.x - cam.x) * (dist / pos.z)) + cam.x;
+    let y = ((pos.y - cam.y) * (dist / pos.z)) + cam.y;
+    x = x * width
+    y = y * width
+    return {x:x, y:y};
 }
 
 function drawline(pos1, pos2) {
