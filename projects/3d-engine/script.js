@@ -28,6 +28,12 @@ let triangles = [
     [5, 1, 8],
 ];
 
+for (let i = 0; i < triangles.length; i++) {
+    triangles[i][0] -= 1;
+    triangles[i][1] -= 1;
+    triangles[i][2] -= 1;
+}
+
 let dist = 1
 let fov = 110;
 let angle = 2 * Math.atan(dist / 2 * fov);
@@ -52,8 +58,8 @@ function drawline(pos1, pos2) {
     ctx.stroke();
 }
 
-for (let i = 0; i < triangles.length; i++) {
-    drawline(project(vertices[triangles[i][0] - 1]), project(vertices[triangles[i][1] - 1]));
-    drawline(project(vertices[triangles[i][1] - 1]), project(vertices[triangles[i][2] - 1]));
-    drawline(project(vertices[triangles[i][2] - 1]), project(vertices[triangles[i][0] - 1]));
+for (let i = 0; i < 1; i++) {
+    drawline(project(vertices[triangles[i][0]]), project(vertices[triangles[i][1]]));
+    drawline(project(vertices[triangles[i][1]]), project(vertices[triangles[i][2]]));
+    drawline(project(vertices[triangles[i][2]]), project(vertices[triangles[i][0]]));
 }
