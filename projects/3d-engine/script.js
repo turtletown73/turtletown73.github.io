@@ -28,13 +28,13 @@ let triangles = [
     [5, 1, 8],
 ];
 
-let angle = 110;
-let fov = 1.0 / Math.tan(angle / 2.0);
+let dist = 1
+let fov = 110;
+let angle = 2 * Math.atan(dist / 2 * fov);
 let width = canvas.width
 let height = canvas.height
 let aspectratio = width / height
-let dist = 1
-let cam = {x:0,y:0,z:0}
+let cam = {x:0,y:0,z:-3}
 
 function project(pos) {
     let x = ((pos.x - cam.x) * (dist / pos.z)) + cam.x;
@@ -55,5 +55,5 @@ function drawline(pos1, pos2) {
 for (let i = 0; i < triangles.length; i++) {
     drawline(project(vertices[triangles[i][0] - 1]), project(vertices[triangles[i][1] - 1]));
     drawline(project(vertices[triangles[i][1] - 1]), project(vertices[triangles[i][2] - 1]));
-    drawline(project(vertices[triangles[i][0] - 1]), project(vertices[triangles[i][2] - 1]));
+    drawline(project(vertices[triangles[i][2] - 1]), project(vertices[triangles[i][0] - 1]));
 }
