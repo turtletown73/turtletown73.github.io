@@ -40,11 +40,11 @@ let angle = 2 * Math.atan(dist / 2 * fov);
 let width = canvas.width
 let height = canvas.height
 let aspectratio = width / height
-let cam = {x:0,y:0,z:-3}
+let cam = {x:0,y:0,z:0}
 
 function project(pos) {
-    let x = ((pos.x - cam.x) * (dist / pos.z)) + cam.x;
-    let y = ((pos.y - cam.y) * (dist / pos.z)) + cam.y;
+    let x = pos.x * (dist / pos.z);
+    let y = pos.y * (dist / pos.z);
     x = x * width
     y = y * width
     return {x:x, y:y};
@@ -58,8 +58,12 @@ function drawline(pos1, pos2) {
     ctx.stroke();
 }
 
-for (let i = 0; i < 8; i++) {
-    drawline(project(vertices[triangles[i][0]]), project(vertices[triangles[i][1]]));
-    drawline(project(vertices[triangles[i][1]]), project(vertices[triangles[i][2]]));
-    drawline(project(vertices[triangles[i][2]]), project(vertices[triangles[i][0]]));
-}
+drawline(project(vertices[0]), project(vertices[1]));
+drawline(project(vertices[0]), project(vertices[2]));
+drawline(project(vertices[1]), project(vertices[3]));
+drawline(project(vertices[2]), project(vertices[3]));
+
+drawline(project(vertices[4]), project(vertices[5]));
+drawline(project(vertices[4]), project(vertices[6]));
+drawline(project(vertices[5]), project(vertices[7]));
+drawline(project(vertices[6]), project(vertices[7]));
