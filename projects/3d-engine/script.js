@@ -52,8 +52,8 @@ function project(pos) {
 
 function drawline(pos1, pos2) {
     ctx.beginPath();
-    ctx.moveTo(pos1.x, pos1.y * -1);
-    ctx.lineTo(pos2.x, pos2.y * -1);
+    ctx.moveTo(pos1.x, pos1.y);
+    ctx.lineTo(pos2.x, pos2.y);
     ctx.closePath();
     ctx.stroke();
 }
