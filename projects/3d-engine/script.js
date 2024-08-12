@@ -60,7 +60,7 @@ function drawline(pos1, pos2) {
 }
 
 for (let i = 0; i < vertices.length; i++) {
-    drawline(project(vertices[triangles[i][0]]), project(triangles[i][1]));
-    drawline(project(triangles[i][1]), project(triangles[i][2]));
-    drawline(project(triangles[i][2]), project(triangles[i][0]));
+    drawline(project(vertices[triangles[i][0]]), project(vertices[triangles[i][1]]));
+    drawline(project(vertices[triangles[i][1]]), project(vertices[triangles[i][2]]));
+    drawline(project(vertices[triangles[i][2]]), project(vertices[triangles[i][0]]));
 }
