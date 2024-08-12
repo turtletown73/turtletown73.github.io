@@ -59,12 +59,8 @@ function drawline(pos1, pos2) {
     ctx.stroke();
 }
 
-drawline(project(vertices[0]), project(vertices[1]));
-drawline(project(vertices[0]), project(vertices[2]));
-drawline(project(vertices[1]), project(vertices[3]));
-drawline(project(vertices[2]), project(vertices[3]));
-
-drawline(project(vertices[4]), project(vertices[5]));
-drawline(project(vertices[4]), project(vertices[6]));
-drawline(project(vertices[5]), project(vertices[7]));
-drawline(project(vertices[6]), project(vertices[7]));
+for (let i = 0; i < vertices.length; i++) {
+    drawline(project(vertices[triangles[i][0]]), project(triangles[i][1]));
+    drawline(project(triangles[i][1]), project(triangles[i][2]));
+    drawline(project(triangles[i][2]), project(triangles[i][0]));
+}
