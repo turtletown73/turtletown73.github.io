@@ -46,7 +46,9 @@ function project(pos) {
     let x = pos.x * (dist / pos.z);
     let y = pos.y * (dist / pos.z);
     x = x * width
-    y = y * width
+    y = y * height
+    x = x + (width / 2)
+    y = y + (height / 2)
     return {x:x, y:y};
 }
 
