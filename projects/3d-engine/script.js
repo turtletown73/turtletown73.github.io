@@ -58,7 +58,7 @@ function drawline(pos1, pos2) {
     ctx.stroke();
 }
 
-for (let i = 0; i < 1; i++) {
+for (let i = 0; i < 8; i++) {
     drawline(project(vertices[triangles[i][0]]), project(vertices[triangles[i][1]]));
     drawline(project(vertices[triangles[i][1]]), project(vertices[triangles[i][2]]));
     drawline(project(vertices[triangles[i][2]]), project(vertices[triangles[i][0]]));
