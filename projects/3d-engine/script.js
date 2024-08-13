@@ -60,10 +60,10 @@ function project(position) {
     position = new pos((position.x - cam.pos.x),(position.y - cam.pos.y),(position.z - cam.pos.z));
     let x = position.x * (dist / position.z);
     let y = position.y * (dist / position.z);
-    x = x * width
-    y = y * height
-    x = x + (width / 2)
-    y = y + (height / 2)
+    x = x * width;
+    y = y * height;
+    x = x + (width / 2);
+    y = y + (height / 2);
     return new pos(x, y);
 }
 
@@ -113,9 +113,9 @@ let triangles = [
     new triangle(5, 1, 3),
 ];
 
-let cube = new obj(vertices, triangles, new pos(-1, -1, 0), new rot(0, 0, 0));
+let cube = new obj(vertices, triangles, new pos(0, 0, 0), new rot(0, 0, 0));
 let cube2 = obj
-cube2.pos = new pos(1, 1, 0)
+cube2.pos = new pos(0, 0, 1)
 
 drawobj(cube)
 drawobj(cube2)
