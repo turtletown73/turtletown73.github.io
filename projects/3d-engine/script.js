@@ -76,9 +76,15 @@ function drawline(pos1, pos2) {
 
 function drawobj(objectee) {
     for (let i = 0; i < objectee.vertices.length; i++) {
-        drawline(project(objectee.vertices[objectee.triangles[i].p1].add(objectee.pos)), project(objectee.vertices[objectee.triangles[i].p2].add(objectee.pos)));
-        drawline(project(objectee.vertices[objectee.triangles[i].p2].add(objectee.pos)), project(objectee.vertices[objectee.triangles[i].p3].add(objectee.pos)));
-        drawline(project(objectee.vertices[objectee.triangles[i].p3].add(objectee.pos)), project(objectee.vertices[objectee.triangles[i].p1].add(objectee.pos)));
+        let p1 = objectee.vertices[objectee.triangles[i].p1]
+        p1 = new pos(p1.x + objectee.pos.x, p1.y + objectee.pos.y, p1.z + objectee.pos.z)
+        let p2 = objectee.vertices[objectee.triangles[i].p2]
+        p2 = new pos(p2.x + objectee.pos.x, p2.y + objectee.pos.y, p2.z + objectee.pos.z)
+        let p3 = objectee.vertices[objectee.triangles[i].p3]
+        p3 = new pos(p3.x + objectee.pos.x, p3.y + objectee.pos.y, p3.z + objectee.pos.z)
+        drawline(project(p1), project(p2));
+        drawline(project(p2), project(p3));
+        drawline(project(p3), project(p1));
     }
 }
 
