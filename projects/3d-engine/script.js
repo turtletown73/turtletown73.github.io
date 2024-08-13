@@ -119,7 +119,7 @@ let triangles = [
     new triangle(5, 1, 3),
 ];
 
-let cube = new obj(vertices, triangles, new pos(0, 0, 0), new rot(0, 0, 0));
+let cube = new obj(vertices, triangles, new pos(0, 0, -1), new rot(0, 0, 0));
 let cube2 = new obj(vertices, triangles, new pos(0, 0, 1), new rot(0, 0, 0));
 
 drawobj(cube)
