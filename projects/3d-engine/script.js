@@ -85,8 +85,6 @@ function drawobj(objectee) {
         drawline(project(p1), project(p2));
         drawline(project(p2), project(p3));
         drawline(project(p3), project(p1));
-
-        alert(toString(objectee.pos));
     }
 }
 
@@ -121,8 +119,12 @@ let triangles = [
     new triangle(5, 1, 3),
 ];
 
-let cube = new obj(vertices, triangles, new pos(0, 0, -1), new rot(0, 0, 0));
-let cube2 = new obj(vertices, triangles, new pos(0, 0, 1), new rot(0, 0, 0));
+let cube = new obj(vertices, triangles, new pos(0, 0, 0), new rot(0, 0, 0));
+let cube2 = new obj(vertices, triangles, new pos(0, 0, 0), new rot(0, 0, 0));
 
-drawobj(cube)
-drawobj(cube2)
+try {
+    drawobj(cube)
+    drawobj(cube2)
+} catch {
+    alert("error")
+}
