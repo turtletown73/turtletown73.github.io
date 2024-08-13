@@ -2,41 +2,50 @@ let canvas = document.getElementById("viewport");
 let ctx = canvas.getContext("2d");
 ctx.strokeStyle = "white";
 
-let vertices = [
-    {x:-1,y:-1,z:6},
-    {x:1,y:-1,z:6},
-    {x:-1,y:1,z:6},
-    {x:1,y:1,z:6},
-    {x:-1,y:1,z:4},
-    {x:1,y:1,z:4},
-    {x:-1,y:-1,z:4},
-    {x:1,y:-1,z:4},
-];
+class pos {
+    constructor(x, y, z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 
-let triangles = [
-    [1, 2, 3],
-    [3, 2, 4],
+    add(poss) {
+        return new pos(this.x + poss.x, this.y + poss.y, this.z + poss.z);
+    }
+}
 
-    [3, 4, 5],
-    [5, 4, 6],
+class rot {
+    constructor(yz, xz, xy) {
+        this.yz = yz;
+        this.xz = xz;
+        this.xy = xy;
+    }
 
-    [5, 6, 7],
-    [7, 6, 8],
+    add(rott) {
+        return new rot(this.yz + rott.yz, this.xz + rott.xz, this.xy + rott.xy);
+    }
+}
 
-    [7, 8, 1],
-    [1, 8, 2],
+class triangle {
+    constructor(p1, p2, p3) {
+        this.p1 = p1;
+        this.p2 = p2;
+        this.p3 = p3;
+    }
+}
 
-    [2, 8, 4],
-    [4, 8, 6],
-
-    [7, 1, 5],
-    [5, 1, 3],
-];
-
-for (let i = 0; i < triangles.length; i++) {
-    triangles[i][0] -= 1;
-    triangles[i][1] -= 1;
-    triangles[i][2] -= 1;
+class obj {
+    constructor(vertices, triangles, pos, rot) {
+        for (let i = 0; i < triangles.length; i++) {
+            triangles[i].p1 -= 1;
+            triangles[i].p2 -= 1;
+            triangles[i].p3 -= 1;
+        }
+        this.vertices = vertices;
+        this.triangles = triangles;
+        this.pos = pos;
+        this.rot = rot;
+    }
 }
 
 let dist = 1
@@ -45,16 +54,17 @@ let angle = 2 * Math.atan(dist / 2 * fov);
 let width = canvas.width
 let height = canvas.height
 let aspectratio = width / height
-let cam = {x:0,y:0,z:0}
+let cam = {pos:new pos(0, 0, -5),rot:new rot(0, 0, 0)}
 
-function project(pos) {
-    let x = pos.x * (dist / pos.z);
-    let y = pos.y * (dist / pos.z);
+function project(position) {
+    position = new pos((position.x - cam.pos.x),(position.y - cam.pos.y),(position.z - cam.pos.z));
+    let x = position.x * (dist / position.z);
+    let y = position.y * (dist / position.z);
     x = x * width
     y = y * height
     x = x + (width / 2)
     y = y + (height / 2)
-    return {x:x, y:y};
+    return new pos(x, y);
 }
 
 function drawline(pos1, pos2) {
@@ -64,8 +74,48 @@ function drawline(pos1, pos2) {
     ctx.stroke();
 }
 
-for (let i = 0; i < vertices.length; i++) {
-    drawline(project(vertices[triangles[i][0]]), project(vertices[triangles[i][1]]));
-    drawline(project(vertices[triangles[i][1]]), project(vertices[triangles[i][2]]));
-    drawline(project(vertices[triangles[i][2]]), project(vertices[triangles[i][0]]));
+function drawobj(objectee) {
+    for (let i = 0; i < objectee.vertices.length; i++) {
+        drawline(project(objectee.vertices[objectee.triangles[i].p1].add(objectee.pos)), project(objectee.vertices[objectee.triangles[i].p2].add(objectee.pos)));
+        drawline(project(objectee.vertices[objectee.triangles[i].p2].add(objectee.pos)), project(objectee.vertices[objectee.triangles[i].p3].add(objectee.pos)));
+        drawline(project(objectee.vertices[objectee.triangles[i].p3].add(objectee.pos)), project(objectee.vertices[objectee.triangles[i].p1].add(objectee.pos)));
+    }
 }
+
+let vertices = [
+    new pos(-1,-1,1),
+    new pos(1,-1,1),
+    new pos(-1,1,1),
+    new pos(1,1,1),
+    new pos(-1,1,-1),
+    new pos(1,1,-1),
+    new pos(-1,-1,-1),
+    new pos(1,-1,-1),
+];
+
+let triangles = [
+    new triangle(1, 2, 3),
+    new triangle(3, 2, 4),
+
+    new triangle(3, 4, 5),
+    new triangle(5, 4, 6),
+
+    new triangle(5, 6, 7),
+    new triangle(7, 6, 8),
+
+    new triangle(7, 8, 1),
+    new triangle(1, 8, 2),
+
+    new triangle(2, 8, 4),
+    new triangle(4, 8, 6),
+
+    new triangle(7, 1, 5),
+    new triangle(5, 1, 3),
+];
+
+let cube = new obj(vertices, triangles, new pos(-1, -1, 0), new rot(0, 0, 0));
+let cube2 = obj
+cube2.pos = new pos(1, 1, 0)
+
+drawobj(cube)
+drawobj(cube2)
