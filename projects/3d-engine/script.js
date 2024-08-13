@@ -85,6 +85,8 @@ function drawobj(objectee) {
         drawline(project(p1), project(p2));
         drawline(project(p2), project(p3));
         drawline(project(p3), project(p1));
+
+        alert(toString(objectee.pos));
     }
 }
 
