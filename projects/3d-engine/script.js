@@ -15,14 +15,14 @@ class pos {
 }
 
 class rot {
-    constructor(yz, xz, xy) {
-        this.yz = yz;
-        this.xz = xz;
-        this.xy = xy;
+    constructor(pitch, yaw, roll) {
+        this.pitch = pitch;
+        this.yaw = yaw;
+        this.roll = roll;
     }
 
     add(rott) {
-        return new rot(this.yz + rott.yz, this.xz + rott.xz, this.xy + rott.xy);
+        return new rot(this.pitch + rott.pitch, this.yaw + rott.yaw, this.roll + rott.roll);
     }
 }
 
@@ -51,6 +51,23 @@ let height = canvas.height
 let aspectratio = width / height
 let cam = {pos:new pos(0, 0, -5),rot:new rot(0, 0, 0)}
 
+function rotatepos(poss, rott) {
+    pitch = rott.pitch
+    yaw = rott.yaw
+    roll = rott.roll
+
+    x = poss.x
+    y = poss.y
+    z = poss.z
+    
+    rotatedX = (Math.cos(yaw) * (Math.cos(pitch) * x)) + (((Math.cos(yaw) * (Math.sin(pitch) * Math.sin(roll))) - (Math.sin(yaw) * (Math.cos(roll) * y))) + ((Math.cos(yaw) * (Math.sin(pitch) * Math.cos(roll))) + (Math.sin(yaw) * (Math.sin(roll) * z))));
+    rotatedY = (Math.sin(yaw) * (Math.cos(pitch) * x)) + (((Math.sin(yaw) * (Math.sin(pitch) * Math.sin(roll))) + (Math.cos(yaw) * (Math.cos(roll) * y))) + ((Math.sin(yaw) * (Math.sin(pitch) * Math.cos(roll))) - (Math.cos(yaw) * (Math.sin(roll) * z))));
+    rotatedZ = (((0 - Math.sin(pitch)) * x) + (Math.cos(pitch) * (Math.sin(roll) * y))) + (Math.cos(pitch) * (Math.cos(roll) * z));
+
+    newPos = new pos(rotatedX, rotatedY, rotatedZ);
+    return newPos;
+}
+
 function project(position) {
     position = new pos((position.x - cam.pos.x),(position.y - cam.pos.y),(position.z - cam.pos.z));
     let x = position.x * (dist / position.z);
@@ -71,12 +88,15 @@ function drawline(pos1, pos2) {
 
 function drawobj(objectee) {
     for (let i = 0; i < objectee.vertices.length; i++) {
-        let p1 = objectee.vertices[objectee.triangles[i].p1]
-        p1 = new pos(p1.x + objectee.pos.x, p1.y + objectee.pos.y, p1.z + objectee.pos.z)
-        let p2 = objectee.vertices[objectee.triangles[i].p2]
-        p2 = new pos(p2.x + objectee.pos.x, p2.y + objectee.pos.y, p2.z + objectee.pos.z)
-        let p3 = objectee.vertices[objectee.triangles[i].p3]
-        p3 = new pos(p3.x + objectee.pos.x, p3.y + objectee.pos.y, p3.z + objectee.pos.z)
+        let p1 = objectee.vertices[objectee.triangles[i].p1];
+        let p2 = objectee.vertices[objectee.triangles[i].p2];
+        let p3 = objectee.vertices[objectee.triangles[i].p3];
+        p1 = rotatepos(p1, objectee.rot);
+        p2 = rotatepos(p2, objectee.rot);
+        p3 = rotatepos(p3, objectee.rot);
+        p1 = new pos(p1.x + objectee.pos.x, p1.y + objectee.pos.y, p1.z + objectee.pos.z);
+        p2 = new pos(p2.x + objectee.pos.x, p2.y + objectee.pos.y, p2.z + objectee.pos.z);
+        p3 = new pos(p3.x + objectee.pos.x, p3.y + objectee.pos.y, p3.z + objectee.pos.z);
         drawline(project(p1), project(p2));
         drawline(project(p2), project(p3));
         drawline(project(p3), project(p1));
@@ -114,8 +134,8 @@ let triangles = [
     new triangle(5, 1, 3),
 ];
 
-let cube = new obj(vertices, triangles, new pos(1, 2, -1), new rot(0, 0, 0));
-let cube2 = new obj(vertices, triangles, new pos(-1, -2, 1), new rot(0, 0, 0));
+let cube = new obj(vertices, triangles, new pos(0.5, 0, -1), new rot(0, 45, 45));
+let cube2 = new obj(vertices, triangles, new pos(-0.5, 0, 1), new rot(0, 45, 0));
 
 try {
     drawobj(cube)
