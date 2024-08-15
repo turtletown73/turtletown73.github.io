@@ -127,5 +127,5 @@ try {
     drawobj(cube)
     drawobj(cube2)
 } catch (error) {
-    alert(JSON.stringify(error))
+    alert(error)
 }
