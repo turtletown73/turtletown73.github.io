@@ -126,6 +126,6 @@ let cube2 = new obj(vertices, triangles, new pos(0, 0, 0), new rot(0, 0, 0));
 try {
     drawobj(cube)
     drawobj(cube2)
-} catch {
-    alert("error")
+} catch (error) {
+    alert(toString(error))
 }
