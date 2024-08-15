@@ -36,13 +36,13 @@ class triangle {
 
 class obj {
     constructor(vertices, triangles, pos, rot) {
-        for (let i = 0; i < triangles.length; i++) {
-            triangles[i].p1 -= 1;
-            triangles[i].p2 -= 1;
-            triangles[i].p3 -= 1;
-        }
         this.vertices = vertices;
         this.triangles = triangles;
+        for (let i = 0; i < this.triangles.length; i++) {
+            this.triangles[i].p1 -= 1;
+            this.triangles[i].p2 -= 1;
+            this.triangles[i].p3 -= 1;
+        }
         this.pos = pos;
         this.rot = rot;
     }
