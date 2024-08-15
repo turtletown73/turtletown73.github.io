@@ -70,7 +70,6 @@ function drawline(pos1, pos2) {
 }
 
 function drawobj(objectee) {
-    alert(JSON.stringify(objectee))
     for (let i = 0; i < objectee.vertices.length; i++) {
         let p1 = objectee.vertices[objectee.triangles[i].p1]
         p1 = new pos(p1.x + objectee.pos.x, p1.y + objectee.pos.y, p1.z + objectee.pos.z)
@@ -115,8 +114,8 @@ let triangles = [
     new triangle(5, 1, 3),
 ];
 
-let cube = new obj(vertices, triangles, new pos(0, 0, -1), new rot(0, 0, 0));
-let cube2 = new obj(vertices, triangles, new pos(0, 0, 1), new rot(0, 0, 0));
+let cube = new obj(vertices, triangles, new pos(1, 2, -1), new rot(0, 0, 0));
+let cube2 = new obj(vertices, triangles, new pos(-1, -2, 1), new rot(0, 0, 0));
 
 try {
     drawobj(cube)
