@@ -75,7 +75,7 @@ function drawline(pos1, pos2) {
 }
 
 function drawobj(objectee) {
-    alert(tostring(objectee))
+    alert(JSON.stringify(objectee))
     for (let i = 0; i < objectee.vertices.length; i++) {
         let p1 = objectee.vertices[objectee.triangles[i].p1]
         p1 = new pos(p1.x + objectee.pos.x, p1.y + objectee.pos.y, p1.z + objectee.pos.z)
