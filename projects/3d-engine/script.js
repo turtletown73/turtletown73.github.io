@@ -28,9 +28,9 @@ class rot {
 
 class triangle {
     constructor(p1, p2, p3) {
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
+        this.p1 = p1 - 1;
+        this.p2 = p2 - 1;
+        this.p3 = p3 - 1;
     }
 }
 
@@ -38,11 +38,6 @@ class obj {
     constructor(vertices, triangles, pos, rot) {
         this.vertices = vertices;
         this.triangles = triangles;
-        //for (let i = 0; i < this.triangles.length; i++) {
-        //    this.triangles[i].p1 -= 1;
-        //    this.triangles[i].p2 -= 1;
-        //    this.triangles[i].p3 -= 1;
-        //}
         this.pos = pos;
         this.rot = rot;
     }
