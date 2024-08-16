@@ -52,9 +52,9 @@ let aspectratio = width / height
 let cam = {pos:new pos(0, 0, -5),rot:new rot(0, 0, 0)}
 
 function rotatepos(poss, rott) {
-    pitch = rott.pitch
-    yaw = rott.yaw
-    roll = rott.roll
+    pitch = rott.pitch - cam.rot.pitch
+    yaw = rott.yaw - cam.rot.yaw
+    roll = rott.roll - cam.rot.roll
 
     x = poss.x
     y = poss.y
@@ -134,12 +134,16 @@ let triangles = [
     new triangle(5, 1, 3),
 ];
 
-let cube = new obj(vertices, triangles, new pos(0.5, 0, -1), new rot(0, 45, 45));
-let cube2 = new obj(vertices, triangles, new pos(-0.5, 0, 1), new rot(0, 45, 0));
+let objects = [new obj(vertices, triangles, new pos(-0.5, 0, 1), new rot(0, 0, 0))];
 
-try {
-    drawobj(cube)
-    drawobj(cube2)
-} catch (error) {
-    alert(error)
+function draw() {
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < objects.length; i++) {
+        drawobj(objects[i]);
+        objects[i].rot.yaw += 0.001;
+        objects[i].rot.pitch += 0;
+        objects[i].rot.roll += 0.001;
+    }
 }
+
+setInterval(draw, 1);
