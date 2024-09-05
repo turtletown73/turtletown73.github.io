@@ -1,0 +1,40 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+#title {
+  text-align: center;
+}
+
+#viewport {
+  position: absolute;
+  left: calc(50% - 250px);
+}
+
+#play-area {
+    display: grid;
+    width: 315px;
+    height: 315px;
+    grid-template-columns: auto auto auto;
+    background-color: white;
+    margin: auto;
+    color: black;
+}
+
+.block {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    border: 3px solid rgb(0, 0, 0);
+    transition: background 0.2s ease-in-out;
+}
+
+.block:hover {
+    cursor: pointer;
+    background: #0ff30f;
+}

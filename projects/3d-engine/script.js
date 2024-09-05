@@ -15,14 +15,14 @@ class pos {
 }
 
 class rot {
-    constructor(pitch, yaw, roll) {
-        this.pitch = pitch;
-        this.yaw = yaw;
-        this.roll = roll;
+    constructor(x, y, z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     add(rott) {
-        return new rot(this.pitch + rott.pitch, this.yaw + rott.yaw, this.roll + rott.roll);
+        return new rot(this.x + rott.x, this.y + rott.y, this.z + rott.z);
     }
 }
 
@@ -52,19 +52,39 @@ let aspectratio = width / height
 let cam = {pos:new pos(0, 0, -5),rot:new rot(0, 0, 0)}
 
 function rotatepos(poss, rott) {
-    pitch = rott.pitch - cam.rot.pitch
-    yaw = rott.yaw - cam.rot.yaw
-    roll = rott.roll - cam.rot.roll
+    let xrot = rott.x - cam.rot.x
+    let yrot = rott.y - cam.rot.y
+    let zrot = rott.z - cam.rot.z
 
-    x = poss.x
-    y = poss.y
-    z = poss.z
+    let x = poss.x
+    let y = poss.y
+    let z = poss.z
+
+    let xbuffer = x
+    let ybuffer = y
+    let zbuffer = z
     
-    rotatedX = (Math.cos(yaw) * (Math.cos(pitch) * x)) + (((Math.cos(yaw) * (Math.sin(pitch) * Math.sin(roll))) - (Math.sin(yaw) * (Math.cos(roll) * y))) + ((Math.cos(yaw) * (Math.sin(pitch) * Math.cos(roll))) + (Math.sin(yaw) * (Math.sin(roll) * z))));
-    rotatedY = (Math.sin(yaw) * (Math.cos(pitch) * x)) + (((Math.sin(yaw) * (Math.sin(pitch) * Math.sin(roll))) + (Math.cos(yaw) * (Math.cos(roll) * y))) + ((Math.sin(yaw) * (Math.sin(pitch) * Math.cos(roll))) - (Math.cos(yaw) * (Math.sin(roll) * z))));
-    rotatedZ = (((0 - Math.sin(pitch)) * x) + (Math.cos(pitch) * (Math.sin(roll) * y))) + (Math.cos(pitch) * (Math.cos(roll) * z));
+    x = (xbuffer * Math.cos(zrot)) - (ybuffer * Math.sin(zrot));
+    y = (xbuffer * Math.sin(zrot)) + (ybuffer * Math.cos(zrot));
+    z = zbuffer;
 
-    newPos = new pos(rotatedX, rotatedY, rotatedZ);
+    xbuffer = x
+    ybuffer = y
+    zbuffer = z
+
+    x = (xbuffer * Math.cos(yrot)) + (zbuffer * Math.sin(yrot));
+    y = ybuffer;
+    z = (-xbuffer * Math.sin(yrot)) + (zbuffer * Math.cos(yrot));
+
+    xbuffer = x
+    ybuffer = y
+    zbuffer = z
+
+    x = xbuffer;
+    y = (ybuffer * Math.cos(xrot)) - (zbuffer * Math.sin(xrot));
+    z = (ybuffer * Math.sin(xrot)) + (zbuffer * Math.cos(xrot));
+
+    newPos = new pos(x, y, z);
     return newPos;
 }
 
@@ -134,15 +154,17 @@ let triangles = [
     new triangle(5, 1, 3),
 ];
 
-let objects = [new obj(vertices, triangles, new pos(-0.5, 0, 1), new rot(0, 0, 0))];
-
+let objects = [new obj(vertices, triangles, new pos(-1.5, 0, 1), new rot(0, 0, 0)), new obj(vertices, triangles, new pos(1.5, 0, 1), new rot(0, 0, 0))];
 function draw() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < objects.length; i++) {
-        drawobj(objects[i]);
-        objects[i].rot.yaw += 0.001;
-        objects[i].rot.pitch += 0;
-        objects[i].rot.roll += 0.001;
+        try {
+            drawobj(objects[i]);
+            objects[i].rot.y += 0.01;
+            objects[i].rot.x += 0.01;
+        } catch (error) {
+            alert(error);
+        }
     }
 }
 
