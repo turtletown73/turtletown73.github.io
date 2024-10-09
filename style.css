@@ -12,6 +12,13 @@ body {
   color: rgb(128, 0, 0);
 }
 
+#silly {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0.1;
+}
+
 #pages {
   width: 50%;
   margin: auto;
