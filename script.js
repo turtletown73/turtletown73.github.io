@@ -42,12 +42,15 @@ document.addEventListener('keydown', function(e) {
 
 function sillyism() {
   window.open("https://drive.google.com/file/d/12dAk1K07BqmrUvS59bRCBcwocp9yyQiP/view");
+  window.setTimeout(function() {window.close();}, 100);
 }
 
 function goobert() {
   fetch("./sandstone.txt")
     .then((res) => res.text())
     .then((text) => {
-      document.write(text);
+      let blank = window.open("about:blank");
+      blank.document.write(text);
+      window.setTimeout(function() {window.close();}, 100);
     });
 }
