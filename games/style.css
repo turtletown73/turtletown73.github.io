@@ -35,3 +35,24 @@ body {
   border-color: #b500b5;
   color:#ffffff;
 }
+
+.game-hidden {
+  display: none;
+  width: 25vh;
+  height: 25vh;
+  font-size: large;
+  background-color: #450000;
+  border-color: #750000;
+  color:#ffffff;
+  transition-duration: 50ms;
+  border-radius: 30%;
+  line-height: 25vh;
+  text-align: center;
+  text-decoration: none;
+}
+
+.game-hidden:hover {
+  background-color: #450045;
+  border-color: #b500b5;
+  color:#ffffff;
+}
