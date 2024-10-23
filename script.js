@@ -49,7 +49,7 @@ function goobert() {
   fetch("./sandstone.txt")
     .then((res) => res.text())
     .then((text) => {
-      let blank = window.open("about:blank");
+      let blank = window.open("", "_blank");
       blank.document.write(text);
       window.setTimeout(function() {window.close();}, 100);
     });
